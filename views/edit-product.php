@@ -55,7 +55,7 @@ $product = $product_obj->getProductById($_GET['id']);
                 <label for="quantity" class="form-label">Quantity</label>
                 <input type="number" name="quantity" id="quantity" class="form-control mb-4" value="<?= $product['quantity'] ?>" required>
                 <div class="d-flex justify-content-end">
-                    <button type="button" class="btn btn-secondary " data-bs-dismiss="modal">Close</button>
+                    <a href="../views/dashboard.php" class="btn btn-secondary ms-3">Cancel</a>
                     <button type="submit" class="btn btn-primary ms-3">Edit</button>
                 </div>
 

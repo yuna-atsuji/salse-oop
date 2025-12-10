@@ -63,10 +63,48 @@
         }else{
             die("Error editing product:" .$this->conn->error);
         }
-
-
     }
 
+    
+    public function buyProduct($id, $buy_qty){
+    // 1. 商品情報取得（価格と在庫）
+    $sql = "SELECT product_name, price, quantity FROM products WHERE id = $id";
+    $result = $this->conn->query($sql);
+
+    if(!$result || $result->num_rows == 0){
+        die("Product not found.");
+    }
+
+    $product = $result->fetch_assoc();
+    $name       = $product['product_name'];
+    $price      = $product['price'];
+    $stock      = $product['quantity'];
+
+    // 2. 在庫チェック
+    if($buy_qty > $stock){
+        die("Not enough stock. Current stock is $stock.");
+    }
+
+    // 3. 在庫を減らす
+    $new_stock = $stock - $buy_qty;
+    $sql_update = "UPDATE products SET quantity = $new_stock WHERE id = $id";
+
+    if(!$this->conn->query($sql_update)){
+        die("Error updating quantity: " . $this->conn->error);
+    }
+
+    // 4. 合計金額を計算
+    $total = $price * $buy_qty;
+
+    // 5. 呼び出し元に結果を返す
+    return [
+        'name'        => $name,
+        'price'       => $price,
+        'buy_qty'     => $buy_qty,
+        'total'       => $total,
+        'stock_after' => $new_stock
+    ];
+}
 
 
   }
