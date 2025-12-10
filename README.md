@@ -27,7 +27,7 @@ UI styled using **Bootstrap (Modal used for the first time ✨)**
 ---
 
 ## 📂 Directory Structure
-```
+｀｀｀
 sales-oop/
 ├── action/        → Process handlers (Add / Edit / Delete / Login etc.)
 ├── assets/
@@ -35,8 +35,7 @@ sales-oop/
 ├── classes/       → Main PHP classes (Database, User, Product ...)
 ├── views/         → UI screens (Dashboard, Forms, Login page)
 └── README.md
-```
-
+｀｀｀
 ---
 
 ## 🚀 What I learned
